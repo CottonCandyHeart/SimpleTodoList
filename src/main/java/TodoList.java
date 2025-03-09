@@ -18,7 +18,6 @@ public class TodoList {
             System.out.println(t.showTask());
         }
     }
-
     public void setTaskDone(Task task){
         for (Task t : tasks){
             if (t == task){
@@ -27,7 +26,6 @@ public class TodoList {
             }
         }
     }
-
     public void setTaskUndone(Task task){
         for (Task t : tasks){
             if (t == task){
@@ -36,5 +34,20 @@ public class TodoList {
             }
         }
     }
-
+    public void changeTaskName(Task task, String newName){
+        for (Task t : tasks){
+            if (t == task){
+                t.setName(newName);
+                break;
+            }
+        }
+    }
+    public void changeTaskDescription(Task task, String newDescription){
+        for (Task t : tasks){
+            if (t == task){
+                t.setDescription(newDescription);
+                break;
+            }
+        }
+    }
 }

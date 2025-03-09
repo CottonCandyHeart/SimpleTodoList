@@ -9,17 +9,19 @@ public class Main {
         todoList.addTask(t1);
         todoList.addTask(t2);
         todoList.addTask(t3);
-
         todoList.showTasks();
         System.out.println();
 
         todoList.setTaskDone(t2);
-
         todoList.showTasks();
         System.out.println();
 
         todoList.removeTask(t3);
+        todoList.showTasks();
+        System.out.println();
 
+        todoList.changeTaskName(t1, "Clean bedroom");
+        todoList.changeTaskDescription(t1, "Clean my bedroom because it's dirty");
         todoList.showTasks();
         System.out.println();
 
