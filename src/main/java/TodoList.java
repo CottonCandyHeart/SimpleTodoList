@@ -50,4 +50,8 @@ public class TodoList {
             }
         }
     }
+
+    public ArrayList<Task> getTasks(){
+        return this.tasks;
+    }
 }
