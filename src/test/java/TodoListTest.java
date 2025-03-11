@@ -36,28 +36,47 @@ public class TodoListTest {
     }
 
     @Test
-    void shouldShowTasks(){
-
-    }
-
-    @Test
     void shouldSetTaskDone(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Do the laundry", "Only dark cloths");
+        todoList.addTask(task);
+        todoList.setTaskDone(task);
 
+        assertTrue(todoList.getTaskById(0).getIsDone());
     }
 
     @Test
     void shouldSetTaskUndone(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Do the laundry", "Only dark cloths");
+        task.setIsDone(true);
+        todoList.addTask(task);
+        todoList.setTaskUndone(task);
+
+        assertFalse(todoList.getTaskById(0).getIsDone());
 
     }
 
     @Test
     void shouldChangeTaskName(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean room", "Clean my room because it's dirty");
+        todoList.addTask(task);
 
+        todoList.changeTaskName(task, "Clean bedroom");
+
+        assertEquals("Clean bedroom", todoList.getTaskById(0).getName());
     }
 
     @Test
     void shouldChangeTaskDescription(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+        todoList.addTask(task);
 
+        todoList.changeTaskDescription(task, "Clean my bedroom because it's dirty");
+
+        assertEquals("Clean my bedroom because it's dirty", todoList.getTaskById(0).getDescription());
     }
 
 }

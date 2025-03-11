@@ -54,4 +54,7 @@ public class TodoList {
     public ArrayList<Task> getTasks(){
         return this.tasks;
     }
+    public Task getTaskById(int id){
+        return this.tasks.get(id);
+    }
 }
