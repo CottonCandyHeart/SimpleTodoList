@@ -67,6 +67,7 @@ public class TodoList {
     }
     public Task getTaskById(int id){
         if (this.tasks.isEmpty()) throw new NoSuchElementException("Empty List");
+        if (id >= this.tasks.size()) throw new IndexOutOfBoundsException("Index out of bounds");
 
         return this.tasks.get(id);
     }

@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -77,6 +78,140 @@ public class TodoListTest {
         todoList.changeTaskDescription(task, "Clean my bedroom because it's dirty");
 
         assertEquals("Clean my bedroom because it's dirty", todoList.getTaskById(0).getDescription());
+    }
+
+    @Test
+    void shouldReturnElementById(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+        Task task2 = new Task(2, "Do the laundry", "Only dark cloths");
+
+        todoList.addTask(task);
+        todoList.addTask(task2);
+
+        assertEquals(task, todoList.getTaskById(0));
+    }
+
+    @Test
+    void shouldThrowExceptionRemoveTaskEmptyList(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+
+        assertThrows(NoSuchElementException.class, ()->{
+            todoList.removeTask(task);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionSetTaskDoneEmptyList(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+
+        assertThrows(NoSuchElementException.class, ()->{
+            todoList.setTaskDone(task);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionSetTaskDoneNoMatchingElements(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+        Task task2 = new Task(2, "Do the laundry", "Only dark cloths");
+
+        todoList.addTask(task2);
+
+        assertThrows(NoSuchElementException.class, ()->{
+            todoList.setTaskDone(task);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionSetTaskUndoneEmptyList(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+
+        assertThrows(NoSuchElementException.class, ()->{
+            todoList.setTaskDone(task);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionSetTaskUndoneNoMatchingElements(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+        Task task2 = new Task(2, "Do the laundry", "Only dark cloths");
+
+        todoList.addTask(task2);
+
+        assertThrows(NoSuchElementException.class, ()->{
+            todoList.setTaskDone(task);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionChangeTaskNameEmptyList(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+
+        assertThrows(NoSuchElementException.class, ()->{
+            todoList.changeTaskName(task, "test");
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionChangeTaskNameNoMatchingElements(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+        Task task2 = new Task(2, "Do the laundry", "Only dark cloths");
+
+        todoList.addTask(task2);
+
+        assertThrows(NoSuchElementException.class, ()->{
+            todoList.changeTaskName(task, "test");
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionChangeTaskDescriptionEmptyList(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+
+        assertThrows(NoSuchElementException.class, ()->{
+            todoList.changeTaskDescription(task, "test");
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionChangeTaskDescriptionNoMatchingElements(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+        Task task2 = new Task(2, "Do the laundry", "Only dark cloths");
+
+        todoList.addTask(task2);
+
+        assertThrows(NoSuchElementException.class, ()->{
+            todoList.changeTaskDescription(task, "test");
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionGetTaskByIdEmptyList(){
+        TodoList todoList = new TodoList();
+
+        assertThrows(NoSuchElementException.class, ()->{
+            todoList.getTaskById(0);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionGetTaskByIdIndexOutOfBounds(){
+        TodoList todoList = new TodoList();
+        Task task = new Task(1, "Clean bedroom", "Clean my room because it's dirty");
+        todoList.addTask(task);
+
+        assertThrows(IndexOutOfBoundsException.class, ()->{
+            todoList.getTaskById(1);
+        });
     }
 
 }
