@@ -1,25 +1,30 @@
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class TodoList {
     ArrayList<Task> tasks;
 
     public TodoList() {
-        tasks = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     public void addTask(Task task){
-        tasks.add(task);
+        this.tasks.add(task);
     }
     public void removeTask(Task task){
-        tasks.remove(task);
+        if (this.tasks.isEmpty()) throw new NoSuchElementException("Empty List");
+
+        this.tasks.remove(task);
     }
     public void showTasks(){
-        for (Task t : tasks){
+        for (Task t : this.tasks){
             System.out.println(t.showTask());
         }
     }
     public void setTaskDone(Task task){
-        for (Task t : tasks){
+        if (!this.tasks.contains(task)) throw new NoSuchElementException("Element doesn't exist");
+
+        for (Task t : this.tasks){
             if (t == task){
                 t.setIsDone(true);
                 break;
@@ -27,7 +32,9 @@ public class TodoList {
         }
     }
     public void setTaskUndone(Task task){
-        for (Task t : tasks){
+        if (!this.tasks.contains(task)) throw new NoSuchElementException("Element doesn't exist");
+
+        for (Task t : this.tasks){
             if (t == task){
                 t.setIsDone(false);
                 break;
@@ -35,7 +42,9 @@ public class TodoList {
         }
     }
     public void changeTaskName(Task task, String newName){
-        for (Task t : tasks){
+        if (!this.tasks.contains(task)) throw new NoSuchElementException("Element doesn't exist");
+
+        for (Task t : this.tasks){
             if (t == task){
                 t.setName(newName);
                 break;
@@ -43,7 +52,9 @@ public class TodoList {
         }
     }
     public void changeTaskDescription(Task task, String newDescription){
-        for (Task t : tasks){
+        if (!this.tasks.contains(task)) throw new NoSuchElementException("Element doesn't exist");
+
+        for (Task t : this.tasks){
             if (t == task){
                 t.setDescription(newDescription);
                 break;
@@ -55,6 +66,8 @@ public class TodoList {
         return this.tasks;
     }
     public Task getTaskById(int id){
+        if (this.tasks.isEmpty()) throw new NoSuchElementException("Empty List");
+
         return this.tasks.get(id);
     }
 }
